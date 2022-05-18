@@ -16,18 +16,18 @@ class Reader():
         self.path = path
         self.targets = None
 
-    def load_2periods_corpora(self, corpus1_path, corpus2_path, verbose=True):
+    def load_2periods_corpora(self, corpus1_path, corpus2_path, verbose=True, corpuskwargs = dict()):
         '''
         Return mangoes.corpus.Corpus object for a pair of corpora.
         '''
         if verbose:
             print('[INFO] Building corpus 1...')
-        corpus1 = mangoes.Corpus(corpus1_path)
+        corpus1 = mangoes.Corpus(corpus1_path, **corpuskwargs)
         if verbose:
             print(f"[INFO] Corpus 1: {corpus1.nb_sentences} sentences \
                 \t{len(corpus1._words_count)} words")
             print('[INFO] Building corpus 2...')
-        corpus2 = mangoes.Corpus(corpus2_path)
+        corpus2 = mangoes.Corpus(corpus2_path, **corpuskwargs)
         if verbose:
             print(f"[INFO] Corpus 2: {corpus2.nb_sentences} sentences \
                 \t{len(corpus2._words_count)} words")
