@@ -5,7 +5,7 @@ from params import NEIGHBORS_FOLDER, DECADES, DISTANCES_FOLDER
 
 parser = argparse.ArgumentParser(description='Compute the neighbordhoods for every decades.')
 parser.add_argument('pos', metavar='PoS', type=str, nargs='?',
-                    help='the Part-of-Speech tag', choices=['A','N','V'])
+                    help='the Part-of-Speech tag', choices=['ADJ','N','V'])
 parser.add_argument('repr', metavar='Repr', type=str, nargs='?',
                     help='the Word Representation model', choices=['sgns','sppmi','doubNorm'])
 parser.add_argument('dist', metavar='Dist', type=str, nargs='?',

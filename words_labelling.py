@@ -9,7 +9,7 @@ from scipy.stats import spearmanr, pearsonr
 import argparse
 parser = argparse.ArgumentParser(description='Select pairs of synonyms.')
 parser.add_argument('pos', metavar='PoS', type=str, nargs='?',
-                    help='the Part-of-Speech tag', choices=['A','N','V'])
+                    help='the Part-of-Speech tag', choices=['ADJ','N','V'])
 parser.add_argument('repr', metavar='Repr', type=str, nargs='?',
                     help='the Word Representation model', choices=['sgns','sppmi','doubNorm'])
 parser.add_argument('dist', metavar='Dist', type=str, nargs='?',
@@ -76,9 +76,3 @@ print(f'[INFO:] CSV stored in "{INFO_WORDS_FOLDER}/{model_name}/{pos}_wordlabels
 df['SCG_nb'] = 0
 df.loc[df.SCgroup == 'avg' ,'SCG_nb'] = 1
 df.loc[df.SCgroup == 'avgstd' ,'SCG_nb'] = 2
-
-r, pval = spearmanr(semchanges[str(end_decade)] , df.FreqEvol.abs() , alternative='greater')
-print(f'[STATS:] Spearman correlation test between SC and Frequency Changes (groups): \nr={r.round(3)}, pval={pval.round(5)} (greater)')
-
-r, pval = pearsonr(semchanges[str(end_decade)] , ((end_freqs-origin_freqs)/pd.DataFrame(data=(end_freqs,origin_freqs)).T.max(axis=1)).abs() , alternative='greater')
-print(f'[STATS:] Pearson correlation test between SC and Frequency Changes (raw): \nr={r.round(3)}, pval={pval.round(5)} (greater)')

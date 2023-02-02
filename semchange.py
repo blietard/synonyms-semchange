@@ -7,19 +7,18 @@ import toolsIO as io
 from params import NEIGHBORS_FOLDER, DECADES, INFO_WORDS_FOLDER, K_NEIGHBORS
 parser = argparse.ArgumentParser(description='Compute the semantic change for every decades.')
 parser.add_argument('pos', metavar='PoS', type=str, nargs='?',
-                    help='the Part-of-Speech tag', choices=['A','N','V'])
+                    help='the Part-of-Speech tag', choices=['ADJ','N','V'])
 parser.add_argument('repr', metavar='Repr', type=str, nargs='?',
                     help='the Word Representation model', choices=['sgns','sppmi','doubNorm'])
 parser.add_argument('dist', metavar='Dist', type=str, nargs='?',
                     help='the Synchronic Distance', choices=['cosine','euclid'])
 parser.add_argument('--diachrdist', '-d', type=str, metavar='Diachronic dist mode', default='neighbors', nargs='?',
-                    help='mode corresponding to the SC metric', choices=['neighbors','contexts'])
+                    help='mode corresponding to the SC metric', choices=['neighbors'])
 args = parser.parse_args()
 pos, repr_mode, distance , sc_mode = args.pos, args.repr, args.dist, args.diachrdist
 
 model_name = repr_mode + '_' + distance
 word_list, word2ind = io.getTargets(pos,repr_mode)
-contexts = io.getContexts()
 
 semChange = pd.DataFrame(columns=DECADES,dtype='float16',index = word_list )
 semChange.index.name = 'words'
