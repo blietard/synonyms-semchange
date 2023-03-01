@@ -1,12 +1,17 @@
 import pandas as pd 
 import numpy as np
-from params import WORDS_FOLDER, DECADES, CSV_FOLDER, MIN_FREQ
+from params import WORDS_FOLDER, DECADES, CSV_FOLDER, MIN_FREQ, NEIGHBORS_FOLDER, SND_K_RANGE
 import toolsIO as io 
 import os
 import pickle
 from tqdm import tqdm
 import argparse
 import Levenshtein as lev
+
+def k_jaccard_distance(u,v,k):
+    intersect = len(np.intersect1d(u[:k],v[:k]))
+    union = len(np.union1d(u[:k],v[:k]))
+    return 1 - intersect/union
 
 parser = argparse.ArgumentParser(description='Select pairs of synonyms.')
 parser.add_argument('pos', metavar='PoS', type=str, nargs='?',
@@ -24,6 +29,9 @@ contexts = io.getContexts()
 words_labels = io.getWordLabels(pos,model_name)
 semchanges = io.getSemChange(pos, model_name)
 semchanges_OP = io.getSemChange(pos, model_name, procrustes=True)
+origin_neighbors = io.getNeighbors(pos, model_name, DECADES[0])
+end_neighbors = io.getNeighbors(pos, model_name, DECADES[-1])
+
 
 with open(f'{WORDS_FOLDER}/source_synonyms.pkl','rb') as f:
     syns_dict = pickle.load(f)[pos]
@@ -51,7 +59,6 @@ df['syns_WordNet'] = [pair in wn_synpairs for pair in list(df[['entry','syn']].i
 own_synpairs = io.getOpenWordNetSyns(pos)
 df['syns_OpenWordNet'] = [pair in own_synpairs for pair in list(df[['entry','syn']].itertuples(index=False,name=None))]
 
-end_neighbors = io.getNeighbors(pos,model_name,DECADES[-1])
 WNsyndict = io.getWordNetSyns_asDict(pos)
 def areSynsExtended(w1,w2,areSynsWN,k=10,debug=False):
     if areSynsWN:
@@ -175,16 +182,24 @@ n_synpairs = len(candidate_syns_pairs)
 syns_distances_origin = []
 syns_distances_end = []
 syns_lev_distances = []
-for i,(s1,s2,_) in tqdm(enumerate(candidate_syns_pairs), desc="Synonyms", total=n_synpairs):
+syns_neigh_distances_origin = []
+syns_neigh_distances_end = []
+for i,(s1,s2,_) in tqdm(enumerate(candidate_syns_pairs), desc="Computing distances", total=n_synpairs):
     ind1 = word2ind[s1]
     ind2 = word2ind[s2]
     syns_lev_distances.append(lev.distance(s1, s2))
     syns_distances_origin.append( distances_origin[ind1,ind2] )
     syns_distances_end.append( distances_end[ind1,ind2] )
+    syns_neigh_distances_origin.append( [k_jaccard_distance(origin_neighbors[ind1], origin_neighbors[ind2], k) for k in SND_K_RANGE ] )
+    syns_neigh_distances_end.append( [k_jaccard_distance(end_neighbors[ind1], end_neighbors[ind2], k) for k in SND_K_RANGE ] )
 df['Lev'] = np.array(syns_lev_distances)
 df['SDO'] = np.array(syns_distances_origin)
 df['SDE'] = np.array(syns_distances_end)
 df['Div'] = df['SDE'] - df['SDO']
+syns_neigh_distances_origin = np.array(syns_neigh_distances_origin)
+syns_neigh_distances_end = np.array(syns_neigh_distances_end)
+df[['SNDO_'+str(k) for k in SND_K_RANGE]] = syns_neigh_distances_origin
+df[['SNDE_'+str(k) for k in SND_K_RANGE]] = syns_neigh_distances_end
 
 df['SDGO'] = 'mid'
 df.loc[ df.SDO > (df.SDO.mean()+df.SDO.std()), 'SDGO' ] = 'far'

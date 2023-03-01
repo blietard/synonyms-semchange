@@ -46,6 +46,7 @@ print("\\bottomrule\n\\end{tabular}")
 
 print('\n======= PLOTS =======\n')
 
+# Divergence and why it's not working
 distances_origin = io.getDistanceMatrix( pos, model_name, DECADES[0] )
 distances_end = io.getDistanceMatrix( pos, model_name, DECADES[-1] )
 div_pop = distances_end - distances_origin
@@ -63,6 +64,7 @@ ax.set_xlabel('Divergence $\\Delta = SDE - SDO $')
 ax.legend(loc='upper left')
 fig.savefig(f"{IMG_FOLDER}/{model_name}_{pos}_unsup_Div.png")
 
+# SDO and SDE to have a look
 fig, ax = plt.subplots()
 synpairs_df[synpairs_df.syns_WordNet].SDO.plot.hist(alpha=0.6, density=True, bins=20, label='Still synonyms')
 synpairs_df[~synpairs_df.syns_WordNet].SDO.plot.hist(alpha=0.6, density=True, bins=20, label='Differentiated')
@@ -80,5 +82,40 @@ ax.set_ylabel('Density')
 ax.set_xlabel('SDE')
 ax.legend(loc='upper left')
 fig.savefig(f"{IMG_FOLDER}/{model_name}_{pos}_unsup_SDE.png")
+
+# TPR and TNR for different alpha
+
+min_std_times = 3
+max_std_times = 4
+n_points = 100
+thresholds = np.linspace(
+                start = nnz_close_div_pop.mean() - min_std_times*nnz_close_div_pop.std(),
+                stop = nnz_close_div_pop.mean() + max_std_times*nnz_close_div_pop.std(),
+                num = n_points
+                )
+
+tp = np.array( [ ((synpairs_df.Div <= t)&(synpairs_df.syns_WordNet)).sum() for t in thresholds] )
+tn = np.array( [ ((synpairs_df.Div > t)&(~synpairs_df.syns_WordNet)).sum() for t in thresholds] )
+tpr = tp / synpairs_df.syns_WordNet.sum()*100
+tnr = tn / (~synpairs_df.syns_WordNet).sum()*100
+
+fig = plt.figure(figsize=(12,8))
+fig.set_facecolor('white')
+ax = fig.add_subplot(111)
+
+ax.plot(thresholds,tpr,label='TPR', color = 'goldenrod', marker='o', markevery=8, markersize=8)
+ax.plot(thresholds,tnr,label='TNR', color = 'mediumpurple', marker='^', markevery=8, markersize=8)
+ax.set_ylim(0, 100)
+
+ax.vlines(x=[nnz_close_div_pop.mean(), nnz_close_div_pop.mean()+nnz_close_div_pop.std()], ymin = 0, ymax = 100 ,label='Used $\\alpha$',color='black',linestyle='--',alpha=0.4)
+
+ax.set_xticks( ticks=[nnz_close_div_pop.mean() + i*nnz_close_div_pop.std() for i in range(-min_std_times, max_std_times+1)], labels=list(range(-min_std_times, max_std_times+1)) )
+
+ax.yaxis.grid()
+ax.set_title(f'TPR and TNR for Divergence-based method \nfor POS {pos}, model {model_name}.')
+ax.set_xlabel('Threshold parameter $\\alpha$')
+ax.set_ylabel('%')
+ax.legend(loc='center left')
+fig.savefig(f"{IMG_FOLDER}/{model_name}_{pos}_unsup_Rates.png")
 
 print('[INFO] Figures saved in '+IMG_FOLDER)
