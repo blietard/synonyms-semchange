@@ -23,6 +23,7 @@ word_list, word2ind = io.getTargets(pos,repr_mode)
 contexts = io.getContexts()
 words_labels = io.getWordLabels(pos,model_name)
 semchanges = io.getSemChange(pos, model_name)
+semchanges_OP = io.getSemChange(pos, model_name, procrustes=True)
 
 with open(f'{WORDS_FOLDER}/source_synonyms.pkl','rb') as f:
     syns_dict = pickle.load(f)[pos]
@@ -140,6 +141,8 @@ df['OWNsenses_syn'] = nb_senses2
 
 df['DiachrD_entry'] = semchanges.loc[df.entry][str(DECADES[-1])].values
 df['DiachrD_syn'] = semchanges.loc[df.syn][str(DECADES[-1])].values
+df['DD_OP_entry'] = semchanges_OP.loc[df.entry][str(DECADES[-1])].values
+df['DD_OP_syn'] = semchanges_OP.loc[df.syn][str(DECADES[-1])].values
 df['DiachrDG_entry'] = words_labels.loc[df.entry]['SCgroup'].values
 df['DiachrDG_syn'] = words_labels.loc[df.syn]['SCgroup'].values
 df['DiachrDG_pair_avg'] = None
@@ -206,8 +209,9 @@ df['absFEv_syn'] = df.FEv_syn.abs()
 df['normLev'] = df.Lev /((df.entry.str.len()+df.syn.str.len())/2)
 df['FGDO'] = (df.FGO_entry - df.FGO_syn)
 df['FGDE'] = (df.FGE_entry - df.FGE_syn)
-df['DDGpair_atleast1'] = df['DiachrDG_pair_avgstd'].astype(bool)
-df['DDGpair_both'] = (df['DiachrDG_pair_avgstd'] == 'both')
+df['FEvD'] = df['FEv_entry'] - df['FEv_syn']
+df['DDGpair_atleast1'] = df['DiachrDG_pair_avg'].astype(bool)
+df['DDGpair_both'] = (df['DiachrDG_pair_avg'] == 'both')
 df['DeltaDD'] = (df.DiachrD_entry - df.DiachrD_syn).abs()
 
 df.index.name = 'pairIdx'

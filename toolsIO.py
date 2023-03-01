@@ -57,7 +57,9 @@ def getMatrixDist(distance):
     return matdist
 
 
-def getSemChange(pos,model_name):
+def getSemChange(pos,model_name,procrustes=False):
+    if procrustes:
+        return pd.read_csv(f'{INFO_WORDS_FOLDER}/{model_name}/{pos}_semchange_procrustes.csv',sep='\t',index_col='words')
     return pd.read_csv(f'{INFO_WORDS_FOLDER}/{model_name}/{pos}_semchange.csv',sep='\t',index_col='words')
 
 def getFreq(pos,model_name):

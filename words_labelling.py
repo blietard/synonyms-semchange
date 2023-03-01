@@ -71,6 +71,7 @@ df['SCgroup'] = sc_group
 df['FreqEvol'] =  df['FGE'] - df['FGO']
 
 df.to_csv(f'{INFO_WORDS_FOLDER}/{model_name}/{pos}_wordlabels.csv', sep='\t',index=True)
+print(f'[INFO:] Avg SC : {average_sc}, Avg SC + Std : {average_sc + deviation_sc}')
 print(f'[INFO:] CSV stored in "{INFO_WORDS_FOLDER}/{model_name}/{pos}_wordlabels.csv"')
 
 df['SCG_nb'] = 0
