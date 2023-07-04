@@ -1,0 +1,165 @@
+\begin{thebibliography}{22}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Br\'eal(1897)}]{breal-1897-essai}
+Michel Br\'eal. 1897.
+\newblock \emph{Essai de S\'emantique}.
+\newblock Paris: Hachette.
+
+\bibitem[{Clark(1993)}]{clark_1993}
+Eve~V. Clark. 1993.
+\newblock \href {https://doi.org/10.1017/CBO9780511554377.005}
+  {\emph{Conventionality and contrast}}, Cambridge Studies in Linguistics, page
+  67–83. Cambridge University Press.
+
+\bibitem[{Dubossarsky et~al.(2015)Dubossarsky, Tsvetkov, Dyer, and
+  Grossman}]{dubossarsky-etal-2015-bottom-up}
+Haim Dubossarsky, Y.~Tsvetkov, C.~Dyer, and Eitan Grossman. 2015.
+\newblock A bottom up approach to category mapping and meaning change.
+\newblock \emph{CEUR Workshop Proceedings}, 1347:66--70.
+
+\bibitem[{Dubossarsky et~al.(2017)Dubossarsky, Weinshall, and
+  Grossman}]{dubossarsky-etal-2017-outta}
+Haim Dubossarsky, Daphna Weinshall, and Eitan Grossman. 2017.
+\newblock \href {https://doi.org/10.18653/v1/D17-1118} {Outta control: Laws of
+  semantic change and inherent biases in word representation models}.
+\newblock In \emph{Proceedings of the 2017 Conference on Empirical Methods in
+  Natural Language Processing}, pages 1136--1145, Copenhagen, Denmark.
+  Association for Computational Linguistics.
+
+\bibitem[{Fellbaum and Princeton(2010)}]{fellbaum2010wordnet}
+Christiane Fellbaum and University~of Princeton. 2010.
+\newblock \href {https://wordnet.princeton.edu/} {Wordnet}.
+\newblock In \emph{About WordNet}. Princeton University.
+
+\bibitem[{Fernald(1896)}]{fernald1896english}
+James~Champlin Fernald. 1896.
+\newblock \emph{... English Synonyms and Antonyms}.
+\newblock Funk \& Wagnalls Company.
+
+\bibitem[{Fourrier and Montariol(2022)}]{fourrier-montariol-2022-caveats}
+Cl{\'e}mentine Fourrier and Syrielle Montariol. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.lchange-1.10} {Caveats of
+  measuring semantic change of cognates and borrowings using multilingual word
+  embeddings}.
+\newblock In \emph{Proceedings of the 3rd Workshop on Computational Approaches
+  to Historical Language Change}, pages 97--112, Dublin, Ireland. Association
+  for Computational Linguistics.
+
+\bibitem[{Hamilton et~al.(2016)Hamilton, Leskovec, and
+  Jurafsky}]{hamilton-etal-2016-diachronic}
+William~L. Hamilton, Jure Leskovec, and Dan Jurafsky. 2016.
+\newblock \href {https://doi.org/10.18653/v1/P16-1141} {Diachronic word
+  embeddings reveal statistical laws of semantic change}.
+\newblock In \emph{Proceedings of the 54th Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 1489--1501,
+  Berlin, Germany. Association for Computational Linguistics.
+
+\bibitem[{Kutuzov et~al.(2022)Kutuzov, Velldal, and
+  {\O}vrelid}]{kutuzov-2022-contextualized}
+Andrey Kutuzov, Erik Velldal, and Lilja {\O}vrelid. 2022.
+\newblock Contextualized embeddings for semantic change detection: Lessons
+  learned.
+\newblock \emph{ArXiv}, abs/2209.00154.
+
+\bibitem[{Lehrer(1985)}]{Lehrer-1985-influence}
+Adrienne Lehrer. 1985.
+\newblock \href {https://doi.org/doi:10.1515/9783110850178.283} {\emph{The
+  influence of semantic fields on semantic change}}, pages 283--296. De Gruyter
+  Mouton, Berlin, New York.
+
+\bibitem[{Mikolov et~al.(2013)Mikolov, Sutskever, Chen, Corrado, and
+  Dean}]{mikolov-etal-2013-sgns}
+Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg~S Corrado, and Jeff Dean. 2013.
+\newblock \href
+  {https://proceedings.neurips.cc/paper/2013/file/9aa42b31882ec039965f3c4923ce901b-Paper.pdf}
+  {Distributed representations of words and phrases and their
+  compositionality}.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~26. Curran Associates, Inc.
+
+\bibitem[{Rodina and Kutuzov(2020)}]{rodina-kutuzov-2020-rusemshift}
+Julia Rodina and Andrey Kutuzov. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.coling-main.90}
+  {{R}u{S}em{S}hift: a dataset of historical lexical semantic change in
+  {R}ussian}.
+\newblock In \emph{Proceedings of the 28th International Conference on
+  Computational Linguistics}, pages 1037--1047, Barcelona, Spain (Online).
+  International Committee on Computational Linguistics.
+
+\bibitem[{Sagi et~al.(2012)Sagi, Kaufmann, and Clark}]{sagi-etal-2011}
+Eyal Sagi, Stefan Kaufmann, and Brady Clark. 2012.
+\newblock \href {https://doi.org/doi:10.1515/9783110252903.161} {\emph{Tracing
+  semantic change with Latent Semantic Analysis}}, pages 161--183. De Gruyter
+  Mouton, Berlin, Boston.
+
+\bibitem[{Schlechtweg et~al.(2019)Schlechtweg, H{\"a}tty, Del~Tredici, and
+  Schulte~im Walde}]{schlechtweg-etal-2019-wind}
+Dominik Schlechtweg, Anna H{\"a}tty, Marco Del~Tredici, and Sabine Schulte~im
+  Walde. 2019.
+\newblock \href {https://doi.org/10.18653/v1/P19-1072} {A wind of change:
+  Detecting and evaluating lexical semantic change across times and domains}.
+\newblock In \emph{Proceedings of the 57th Annual Meeting of the Association
+  for Computational Linguistics}, pages 732--746, Florence, Italy. Association
+  for Computational Linguistics.
+
+\bibitem[{Schlechtweg et~al.(2020)Schlechtweg, McGillivray, Hengchen,
+  Dubossarsky, and Tahmasebi}]{schlechtweg-etal-2020-semeval}
+Dominik Schlechtweg, Barbara McGillivray, Simon Hengchen, Haim Dubossarsky, and
+  Nina Tahmasebi. 2020.
+\newblock \href {https://doi.org/10.18653/v1/2020.semeval-1.1}
+  {{S}em{E}val-2020 task 1: Unsupervised lexical semantic change detection}.
+\newblock In \emph{Proceedings of the Fourteenth Workshop on Semantic
+  Evaluation}, pages 1--23, Barcelona (online). International Committee for
+  Computational Linguistics.
+
+\bibitem[{Stern(1921)}]{stern-1921-swift}
+Gustaf Stern. 1921.
+\newblock \emph{Swift, swiftly, and their synonyms: A contribution to semantic
+  analysis and theory}.
+\newblock Wettergren \& Kerber.
+
+\bibitem[{Tahmasebi et~al.(2021)Tahmasebi, Borina, and
+  Jatowtb}]{tahmasebi-etal-2021-survey}
+Nina Tahmasebi, Lars Borina, and Adam Jatowtb. 2021.
+\newblock \href {https://langsci-press.org/catalog/view/303/3027/2374-1}
+  {Survey of computational approaches to lexical semantic change detection}.
+\newblock \emph{Computational approaches to semantic change}, 6.
+
+\bibitem[{Traugott and Dasher(2001)}]{traugott_dasher_2001}
+Elizabeth~Closs Traugott and Richard~B. Dasher. 2001.
+\newblock \href {https://doi.org/10.1017/CBO9780511486500.004} {\emph{Prior and
+  current work on semantic change}}, Cambridge Studies in Linguistics, page
+  51–104. Cambridge University Press.
+
+\bibitem[{Turney and Mohammad(2019)}]{turney-etal-2019-natural-selection}
+Peter~D. Turney and Saif~M. Mohammad. 2019.
+\newblock \href {https://doi.org/10.1371/journal.pone.0211512} {The natural
+  selection of words: Finding the features of fitness}.
+\newblock \emph{PLoS ONE}, 14.
+
+\bibitem[{Xu and Kemp(2015)}]{xu-kemp-2015-evaluation}
+Yang Xu and Charles Kemp. 2015.
+\newblock \href {https://cogsci.mindmodeling.org/2015/papers/0463/index.html}
+  {A computational evaluation of two laws of semantic change}.
+\newblock In \emph{Proceedings of the 37th Annual Meeting of the Cognitive
+  Science Society, CogSci 2015, Pasadena, California, USA, July 22-25, 2015}.
+  Cognitive Science Society.
+
+\bibitem[{Zamora-Reina et~al.(2022)Zamora-Reina, Bravo-Marquez, and
+  Schlechtweg}]{d-zamora-reina-etal-2022-black}
+Frank~D. Zamora-Reina, Felipe Bravo-Marquez, and Dominik Schlechtweg. 2022.
+\newblock \href {https://doi.org/10.18653/v1/2022.lchange-1.16}
+  {{LSCD}iscovery: A shared task on semantic change discovery and detection in
+  {S}panish}.
+\newblock In \emph{Proceedings of the 3rd Workshop on Computational Approaches
+  to Historical Language Change}, pages 149--164, Dublin, Ireland. Association
+  for Computational Linguistics.
+
+\bibitem[{Zipf(1945)}]{zipf-1945-repetition}
+George~Kingsley Zipf. 1945.
+\newblock \href {https://doi.org/10.1080/00221309.1945.10544486} {The
+  repetition of words, time-perspective, and semantic balance}.
+\newblock \emph{The Journal of General Psychology}, 32(1):127--148.
+
+\end{thebibliography}

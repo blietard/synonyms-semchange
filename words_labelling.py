@@ -22,17 +22,22 @@ model_name = repr_mode + '_' + distance
 word_list, word2ind = io.getTargets(pos,repr_mode)
 freqs = io.getFreq(pos,model_name)
 semchanges = io.getSemChange(pos,model_name)
+semchanges_OP = io.getSemChange(pos, model_name, procrustes=True)
 
 origin_decade = DECADES[0]
 end_decade = DECADES[-1]
 nb_words = len(word_list)
 
 sc = semchanges[str(end_decade)]
+sc_OP = semchanges_OP[str(end_decade)]
 origin_freqs = freqs[str(origin_decade)]
 end_freqs = freqs[str(end_decade)]
 
 average_sc = sc.mean()
 deviation_sc = sc.std()
+
+average_sc_OP = sc_OP.mean()
+deviation_sc_OP = sc_OP.std()
 
 origin_freq_df = origin_freqs.sort_values().to_frame()
 origin_freq_df['F_rank'] = range(1,nb_words+1)
@@ -67,13 +72,26 @@ for word in word_list:
     else:
         sc_group.append('')
 
-df['SCgroup'] = sc_group
+df['DDG_N'] = sc_group
+df['DDG_N_avg'] = sc > average_sc
+df['DDG_N_avgstd'] = sc > average_sc + deviation_sc
+
+sc_group_op = []
+for word in word_list:
+    if sc_OP.loc[word] > average_sc_OP:
+        if sc_OP.loc[word] > average_sc_OP + deviation_sc_OP:
+            sc_group_op.append('avgstd')
+        else:
+            sc_group_op.append('avg')
+    else:
+        sc_group_op.append('')
+df['DDG_OP'] = sc_group_op
+df['DDG_OP_avg'] = sc_OP > average_sc_OP
+df['DDG_OP_avgstd'] = sc_OP > average_sc_OP + deviation_sc_OP
+
 df['FreqEvol'] =  df['FGE'] - df['FGO']
 
 df.to_csv(f'{INFO_WORDS_FOLDER}/{model_name}/{pos}_wordlabels.csv', sep='\t',index=True)
-print(f'[INFO:] Avg SC : {average_sc}, Avg SC + Std : {average_sc + deviation_sc}')
+print(f'[INFO:] (Neighbors) Avg SC : {average_sc}, Avg SC + Std : {average_sc + deviation_sc}')
+print(f'[INFO:] (OP) Avg SC : {average_sc_OP}, Avg SC + Std : {average_sc_OP + deviation_sc_OP}')
 print(f'[INFO:] CSV stored in "{INFO_WORDS_FOLDER}/{model_name}/{pos}_wordlabels.csv"')
-
-df['SCG_nb'] = 0
-df.loc[df.SCgroup == 'avg' ,'SCG_nb'] = 1
-df.loc[df.SCgroup == 'avgstd' ,'SCG_nb'] = 2

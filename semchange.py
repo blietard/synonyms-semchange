@@ -80,7 +80,6 @@ if sc_mode == 'neighbors':
         intersect = np.array([len(np.intersect1d(nn_array[i][:K_NEIGHBORS],nn_origin_array[i][:K_NEIGHBORS])) for i in range(nn_array.shape[0])])
         union = np.array([len(np.union1d(nn_array[i][:K_NEIGHBORS],nn_origin_array[i][:K_NEIGHBORS])) for i in range(nn_array.shape[0])])
         target_change = 1 - intersect/union
-        #target_change = 1 - intersect/K_NEIGHBORS
         print(decade,'Average change : ', target_change.mean().round(4))
         print(decade,'Std Dev. of change: ', target_change.std().round(4))
         semChange[ decade ] = target_change.copy()
